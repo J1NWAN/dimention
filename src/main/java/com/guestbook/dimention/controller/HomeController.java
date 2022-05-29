@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @RequestMapping(value = "/index")
     public String index() {
-        System.out.println("indexPageOn");
         return "index";
+    }
+
+    @RequestMapping("/map")
+    public String map() {
+        return "kakaoMap";
     }
 }
