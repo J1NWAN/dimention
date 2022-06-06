@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.guestbook'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2'
 sourceCompatibility = '11'
 
 configurations {
@@ -43,4 +43,8 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	enabled = false
 }
