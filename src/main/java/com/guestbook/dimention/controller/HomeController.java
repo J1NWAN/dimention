@@ -1,5 +1,6 @@
 package com.guestbook.dimention.controller;
 
+import com.guestbook.dimention.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @RequestMapping(value = "/index")
-    public String index() {
+    public String index(UserDTO userDTO) {
         return "index";
     }
 
