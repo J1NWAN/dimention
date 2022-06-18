@@ -1,0 +1,26 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <article id="signin" class="active">
+        <form th:action="@{/user/signin}" th:object="${userDTO}" method="post">
+            <h2 class="major">Sign in</h2>
+            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+                <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+            </div>
+            <div class="fields">
+                <div style="width: 55%;" class="field half sign">
+                    <label for="userId">ID</label>
+                    <input type="text" name="userId" id="userId"/>
+                </div>
+                <div style="width: 55%;" class="field half sign">
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" id="password1"/>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" value="Sign in" class="primary"/></li>
+            </ul>
+        </form>
+        <div class="close"></div>
+    </article>
+</div>
+</html>
