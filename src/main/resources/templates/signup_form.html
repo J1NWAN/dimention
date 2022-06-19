@@ -1,0 +1,37 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <article id="signup" class="active">
+        <form th:action="@{/user/signup}" th:object="${siteUserDTO}" method="post">
+            <h2 class="major">Sign Up</h2>
+            <div th:replace="form_errors :: formErrorsFragment"></div>
+            <div class="fields">
+                <div class="field half sign">
+                    <label for="username">Name</label>
+                    <input type="text" name="username" id="username" th:field="*{username}"/>
+                </div>
+                <div class="field half sign">
+                    <label for="userId">ID</label>
+                    <input type="text" name="userId" id="userId" th:field="*{userId}"/>
+                </div>
+                <div class="field half sign">
+                    <label for="password1">Password</label>
+                    <input type="password" name="password1" id="password1" th:field="*{password1}"/>
+                </div>
+                <div class="field half sign">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" th:field="*{password2}"/>
+                </div>
+                <div style="width: 96%;" class="field half sign">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" th:field="*{email}"/>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" value="Continue" class="primary"/></li>
+<!--                <li><input type="button" value="Sign up" class="primary" onclick="getUserSignUp()"/></li>-->
+            </ul>
+        </form>
+        <div class="close"></div>
+    </article>
+</div>
+</html>

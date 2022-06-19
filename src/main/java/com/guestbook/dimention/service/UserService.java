@@ -1,10 +1,9 @@
 package com.guestbook.dimention.service;
 
-import com.guestbook.dimention.dto.UserDTO;
-import com.guestbook.dimention.entity.User;
+import com.guestbook.dimention.dto.SiteUserDTO;
+import com.guestbook.dimention.entity.SiteUser;
 import com.guestbook.dimention.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.assertj.core.api.Assertions;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +16,23 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public User create(UserDTO userDTO) {
-        User user = new User();
-        user.setUserId(userDTO.getUserId());
-        user.setUsername(userDTO.getUsername());
+    public SiteUser create(SiteUserDTO userDTO) {
+        SiteUser siteUser = new SiteUser();
+        siteUser.setUserId(userDTO.getUserId());
+        siteUser.setUsername(userDTO.getUsername());
 
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword1()));
-        user.setEmail(userDTO.getEmail());
+        siteUser.setPassword(passwordEncoder.encode(userDTO.getPassword1()));
+        siteUser.setEmail(userDTO.getEmail());
 
         if(whoisIp()) {
-            user.setUserType("관리자");
+            siteUser.setUserType("관리자");
         } else {
-            user.setUserType("일반");
+            siteUser.setUserType("일반");
         }
 
         System.out.println(whoisIp());
-        userRepository.save(user);
-        return user;
+        userRepository.save(siteUser);
+        return siteUser;
     }
 
     public boolean whoisIp() {

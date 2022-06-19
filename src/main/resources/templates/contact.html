@@ -3,9 +3,7 @@
     <article id="contact" class="active">
         <form th:action="@{/contact/create}" th:object="${contactDTO}" method="post">
             <h2 class="major">Contact</h2>
-            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-                <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
-            </div>
+            <div th:replace="form_errors :: formErrorsFragment"></div>
             <div class="fields">
                 <div class="field half">
                     <label for="username">Name</label>

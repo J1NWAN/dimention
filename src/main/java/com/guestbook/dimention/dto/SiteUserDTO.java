@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class UserDTO {
+public class SiteUserDTO {
     @Size(min = 3, max = 25)
     @NotEmpty(message = "ID는 필수항목입니다.")
     private String userId;

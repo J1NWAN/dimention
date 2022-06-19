@@ -1,23 +1,26 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content">
     <article id="signin" class="active">
-        <form th:action="@{/user/signin}" th:object="${userDTO}" method="post">
+        <form th:action="@{/user/login}" method="post">
             <h2 class="major">Sign in</h2>
-            <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-                <div th:each="err : ${#fields.allErrors()}" th:text="${err}"/>
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    사용자ID 또는 비밀번호를 확인해 주세요.
+                </div>
             </div>
             <div class="fields">
                 <div style="width: 55%;" class="field half sign">
-                    <label for="userId">ID</label>
-                    <input type="text" name="userId" id="userId"/>
+                    <label for="username">ID</label>
+                    <input type="text" name="username" id="username"/>
                 </div>
                 <div style="width: 55%;" class="field half sign">
-                    <label for="password1">Password</label>
-                    <input type="password" name="password1" id="password1"/>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password"/>
                 </div>
             </div>
             <ul class="actions">
                 <li><input type="submit" value="Sign in" class="primary"/></li>
+                <li><input type="button" value="Sign up" class="primary" onclick="getUserSignUp()"/></li>
             </ul>
         </form>
         <div class="close"></div>
