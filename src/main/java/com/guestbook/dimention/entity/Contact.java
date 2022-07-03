@@ -21,6 +21,9 @@ public class Contact {
     private String email;
 
     @Column(columnDefinition = "TEXT")
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String message;
 
     private LocalDateTime createDate;

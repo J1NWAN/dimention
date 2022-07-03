@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
     <link rel="stylesheet" type="text/css" th:href="@{../assets/css/bootstrap.min.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{../assets/css/main.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{../assets/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{../assets/css/main.css}"/>
     <noscript>
         <link rel="stylesheet" th:href="@{../assets/css/noscript.css}"/>
     </noscript>
@@ -16,12 +16,9 @@
 </style>
 <body>
 <!-- Header -->
-<header id="header">
-<!--    <div class="logo">-->
-<!--        <span class="icon fa-gem"></span>-->
-<!--    </div>-->
-    <nav th:replace="navbar :: navbarFragment"></nav>
-</header>
+<!--<header style="float: left;" id="header">-->
+<!--    <nav th:replace="navbar :: navbarFragment"></nav>-->
+<!--</header>-->
 
 <div id="wrapper">
     <div id="main">

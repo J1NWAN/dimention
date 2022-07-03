@@ -36,11 +36,12 @@
         <nav>
             <ul>
                 <li><a href="/intro">Intro</a></li>
-                <li><a href="/around">Around</a></li>
-                <li><a href="/store/index">Store</a></li>
+<!--                <li><a href="/around">Around</a></li>-->
+                <li><a th:href="@{/store/index}" href="/store/index">Store</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/contact/create}" href="/contact/create">Contact</a></li>
                 <li sec:authorize="isAnonymous()"><a th:href="@{/user/login}" href="/user/login">Sign in</a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}" href="/user/logout">Sign out</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/admin/dashboard}" href="/contact/create">Admin</a></li>
             </ul>
         </nav>
     </header>

@@ -1,6 +1,5 @@
 <html layout:decorate="~{layout}">
-<div layout:fragment="content">
-    <article id="contact" class="active">
+    <article layout:fragment="content" id="contact" class="active">
         <form th:action="@{/contact/create}" th:object="${contactDTO}" method="post">
             <h2 class="major">Contact</h2>
             <div th:replace="form_errors :: formErrorsFragment"></div>
@@ -12,6 +11,10 @@
                 <div class="field half">
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email"/>
+                </div>
+                <div class="field">
+                    <label for="title">Title</label>
+                    <textarea name="title" id="title" rows="1"></textarea>
                 </div>
                 <div class="field">
                     <label for="message">Message</label>
@@ -31,6 +34,5 @@
         </ul>
         <div class="close"></div>
     </article>
-</div>
 </div>
 </html>

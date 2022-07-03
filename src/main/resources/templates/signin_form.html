@@ -1,6 +1,5 @@
 <html layout:decorate="~{layout}">
-<div layout:fragment="content">
-    <article id="signin" class="active">
+    <article layout:fragment="content" id="signin" class="active">
         <form th:action="@{/user/login}" method="post">
             <h2 class="major">Sign in</h2>
             <div th:if="${param.error}">
@@ -25,5 +24,4 @@
         </form>
         <div class="close"></div>
     </article>
-</div>
 </html>

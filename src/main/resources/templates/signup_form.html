@@ -1,6 +1,5 @@
 <html layout:decorate="~{layout}">
-<div layout:fragment="content">
-    <article id="signup" class="active">
+    <article layout:fragment="content" id="signup" class="active">
         <form th:action="@{/user/signup}" th:object="${siteUserDTO}" method="post">
             <h2 class="major">Sign Up</h2>
             <div th:replace="form_errors :: formErrorsFragment"></div>
@@ -33,5 +32,4 @@
         </form>
         <div class="close"></div>
     </article>
-</div>
 </html>

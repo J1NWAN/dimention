@@ -11,6 +11,6 @@ public class StoreController {
 
     @RequestMapping("/index")
     public String storeIndexPage() {
-        return "/store/index";
+        return "store/index";
     }
 }
