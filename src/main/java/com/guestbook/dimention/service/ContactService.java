@@ -1,5 +1,6 @@
 package com.guestbook.dimention.service;
 
+import com.guestbook.dimention.DataNotFoundException;
 import com.guestbook.dimention.dto.ContactDTO;
 import com.guestbook.dimention.entity.Contact;
 import com.guestbook.dimention.repository.ContactRepository;
@@ -14,10 +15,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -43,6 +41,15 @@ public class ContactService {
 
     public List<Contact> getList() {
         return this.contactRepository.findAll();
+    }
+
+    public Contact getContact(Integer id) {
+        Optional<Contact> contact = this.contactRepository.findById(id);
+        if(contact.isPresent()) {
+            return contact.get();
+        } else {
+            throw new DataNotFoundException("question not Found");
+        }
     }
 
     public void contactCreate(ContactDTO contactDTO) {

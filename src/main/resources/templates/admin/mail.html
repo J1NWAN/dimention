@@ -36,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="card ">
                         <div class="card-header">
-                            <h4 class="card-title"> Simple Table</h4>
+                            <h4 class="card-title"> Contact List</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -45,16 +45,18 @@
                                     <tr>
                                         <th>순번</th>
                                         <th>이름</th>
-                                        <th>내용</th>
-                                        <th class="text-center">일자</th>
+                                        <th>제목</th>
+                                        <th class="text-center">등록일자</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="contact : ${list}">
-                                        <td th:text="${contact.getId()}"></td>
-                                        <td th:text="${contact.getUsername()}"></td>
-                                        <td th:text="${contact.getMessage()}"></td>
-                                        <td th:text="${contact.getCreateDate()}" class="text-center"></td>
+                                        <td th:text="${contact.id}"></td>
+                                        <td th:text="${contact.username}"></td>
+<!--                                        -->
+                                        <td><a th:href="|javascript:detailContact(${contact.id})|" th:text="${contact.title}" href="javascript:detailContact(14);"></a></td>
+                                        <td th:text="${#temporals.format(contact.createDate, 'yyyy-MM-dd HH:mm')}"
+                                            class="text-center"></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -63,132 +65,54 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="card  card-plain">
+                    <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> Table on Plain Background</h4>
-                            <p class="category"> Here is a subtitle for this table</p>
+                            <h5 class="title">Edit Profile</h5>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table tablesorter">
-                                    <thead class=" text-primary">
-                                    <tr>
-                                        <th>
-                                            Name
-                                        </th>
-                                        <th>
-                                            Country
-                                        </th>
-                                        <th>
-                                            City
-                                        </th>
-                                        <th class="text-center">
-                                            Salary
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="contact : ${list}">
-                                        <td th:text="${contact.getUsername()}">
-                                            Dakota Rice
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                        <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td class="text-center">
-                                            $36,738
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Minerva Hooper
-                                        </td>
-                                        <td>
-                                            Curaçao
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td class="text-center">
-                                            $23,789
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Sage Rodriguez
-                                        </td>
-                                        <td>
-                                            Netherlands
-                                        </td>
-                                        <td>
-                                            Baileux
-                                        </td>
-                                        <td class="text-center">
-                                            $56,142
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Philip Chaney
-                                        </td>
-                                        <td>
-                                            Korea, South
-                                        </td>
-                                        <td>
-                                            Overland Park
-                                        </td>
-                                        <td class="text-center">
-                                            $38,735
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Doris Greene
-                                        </td>
-                                        <td>
-                                            Malawi
-                                        </td>
-                                        <td>
-                                            Feldkirchen in Kärnten
-                                        </td>
-                                        <td class="text-center">
-                                            $63,542
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Mason Porter
-                                        </td>
-                                        <td>
-                                            Chile
-                                        </td>
-                                        <td>
-                                            Gloucester
-                                        </td>
-                                        <td class="text-center">
-                                            $78,615
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Jon Porter
-                                        </td>
-                                        <td>
-                                            Portugal
-                                        </td>
-                                        <td>
-                                            Gloucester
-                                        </td>
-                                        <td class="text-center">
-                                            $98,615
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-5 pr-md-1">
+                                        <div class="form-group">
+                                            <label>제목</label>
+                                            <input type="text" id="title" class="form-control" disabled="" placeholder="제목">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 px-md-1">
+                                        <div class="form-group">
+                                            <label>이름</label>
+                                            <input type="text" id="username" class="form-control" disabled="" placeholder="이름">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-md-1">
+                                        <div class="form-group">
+                                            <label for="email">이메일</label>
+                                            <input type="email" id="email" name="email" class="form-control" disabled=""
+                                                   placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>내용</label>
+                                            <textarea rows="4" id="message" cols="200" class="form-control" disabled=""></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label>About Me</label>
+                                            <textarea rows="4" cols="200" class="form-control"
+                                                      placeholder="내용을 입력하세요."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-fill btn-primary">전송</button>
                         </div>
                     </div>
                 </div>
@@ -270,4 +194,24 @@
         </ul>
     </div>
 </div>
+<script layout:fragment="script" type='text/javascript'>
+    function detailContact(id) {
+        var path = "/contact/detail";
+        $.ajax({
+            type:"POST",
+            url: path,
+            data: {id: id},
+            success: function(data) {
+                $("#title").val(data.title);
+                $("#username").val(data.username);
+                $("#email").val(data.email);
+                $("#message").val(data.message);
+            },
+            error: function(error) {
+                alert(path);
+                alert(2);
+            }
+        })
+    }
+</script>
 </html>

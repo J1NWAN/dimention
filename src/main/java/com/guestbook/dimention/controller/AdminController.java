@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -29,17 +31,5 @@ public class AdminController {
         List<Contact> list = this.contactService.getList();
         model.addAttribute("list", list);
         return "admin/mail";
-    }
-
-    @GetMapping("/icons")
-    public String iconslist() {
-        System.out.println("AdminController.list");
-        return "admin/icons";
-    }
-
-    @GetMapping("/tables")
-    public String tableslist() {
-        System.out.println("AdminController.list");
-        return "admin/tables";
     }
 }

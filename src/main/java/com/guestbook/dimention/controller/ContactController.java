@@ -1,13 +1,13 @@
 package com.guestbook.dimention.controller;
 
 import com.guestbook.dimention.dto.ContactDTO;
+import com.guestbook.dimention.entity.Contact;
 import com.guestbook.dimention.service.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -30,5 +30,13 @@ public class ContactController {
 
         contactService.contactCreate(contactDTO);
         return "redirect:/";
+    }
+
+    @RequestMapping("/detail")
+    @ResponseBody
+    public Contact detailContact(Model model, Integer id) {
+        Contact contact = this.contactService.getContact(id);
+        model.addAttribute("contact", contact);
+        return contact;
     }
 }
