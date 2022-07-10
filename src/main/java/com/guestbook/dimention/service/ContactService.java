@@ -23,22 +23,6 @@ public class ContactService {
 
     private final ContactRepository contactRepository;
 
-//    /**
-//     * Contact 등록 시, 유효성 체크
-//     * @param errors
-//     * @return
-//     */
-//    public Map<String, String> validateHandling(Errors errors) {
-//        Map<String, String> validatorResult = new HashMap<>();
-//
-//        for(FieldError error : errors.getFieldErrors()) {
-//            String validKeyName = String.format("valid_%s", error.getField());
-//            validatorResult.put(validKeyName, error.getDefaultMessage());
-//        }
-//
-//        return validatorResult;
-//    }
-
     public List<Contact> getList() {
         return this.contactRepository.findAll();
     }
@@ -52,9 +36,14 @@ public class ContactService {
         }
     }
 
-    public void contactCreate(ContactDTO contactDTO) {
+    public long contactCount() {
+        return contactRepository.count();
+    }
+
+    public void contactCreate(Integer id, ContactDTO contactDTO) {
         Contact contact = new Contact();
 
+        contact.setId(id);
         contact.setUsername(contactDTO.getUsername());
         contact.setEmail(contactDTO.getEmail());
         contact.setTitle(contactDTO.getTitle());
@@ -62,7 +51,6 @@ public class ContactService {
         contact.setCreateDate(LocalDateTime.now());
 
         contactRepository.save(contact);
-        System.out.println("contact 등록완료!");
     }
 
 }

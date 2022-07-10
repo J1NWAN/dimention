@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,7 +19,9 @@ public class ContactController {
     private final ContactService contactService;
 
     @GetMapping("/create")
-    public String createContact(ContactDTO contactDTO) {
+    public String createContact(ContactDTO contactDTO, Principal principal, Model model) {
+        contactDTO.setUsername(principal.getName());
+        model.addAttribute("contactDTO", contactDTO);
         return "contact";
     }
 
@@ -28,7 +31,8 @@ public class ContactController {
             return "contact";
         }
 
-        contactService.contactCreate(contactDTO);
+        Integer id = Math.toIntExact(contactService.contactCount());
+        contactService.contactCreate(id+1, contactDTO);
         return "redirect:/";
     }
 
