@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -16,10 +18,16 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public SiteUser create(SiteUserDTO userDTO) {
+    public long userCount() {
+        return userRepository.count();
+    }
+
+    public SiteUser create(SiteUserDTO userDTO, Integer id) {
         SiteUser siteUser = new SiteUser();
+        siteUser.setId(id+1);
         siteUser.setUserId(userDTO.getUserId());
         siteUser.setUsername(userDTO.getUsername());
+        siteUser.setCreateDate(LocalDateTime.now());
 
         siteUser.setPassword(passwordEncoder.encode(userDTO.getPassword1()));
         siteUser.setEmail(userDTO.getEmail());
@@ -33,6 +41,10 @@ public class UserService {
         System.out.println(whoisIp());
         userRepository.save(siteUser);
         return siteUser;
+    }
+
+    public List<SiteUser> getList() {
+        return this.userRepository.findAll();
     }
 
     public boolean whoisIp() {

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -11,8 +13,7 @@ import javax.persistence.*;
 public class SiteUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(unique = true)
     private String userId;
@@ -25,4 +26,10 @@ public class SiteUser {
     private String email;
 
     private String userType;
+
+    private String phone;
+
+    private LocalDateTime createDate;
+
+    private Date updateDate;
 }

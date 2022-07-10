@@ -23,7 +23,7 @@ public class UserController {
     private final UserService userService;
 
     /**
-     * 회원가입
+     * 로그인
      * @param
      * @return
      */
@@ -72,7 +72,8 @@ public class UserController {
         }
 
         try {
-            userService.create(siteUserDTO);
+            Integer id = Math.toIntExact(userService.userCount());
+            userService.create(siteUserDTO, id);
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
             bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");

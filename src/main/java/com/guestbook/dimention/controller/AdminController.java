@@ -1,7 +1,9 @@
 package com.guestbook.dimention.controller;
 
 import com.guestbook.dimention.entity.Contact;
+import com.guestbook.dimention.entity.SiteUser;
 import com.guestbook.dimention.service.ContactService;
+import com.guestbook.dimention.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +18,19 @@ import java.util.List;
 public class AdminController {
     private final String PATH = "admin";
     private final ContactService contactService;
+    private final UserService userService;
 
     @GetMapping("/dashboard")
     public String page(Model model) {
         System.out.println("AdminController.page");
         return PATH + "/dashboard";
+    }
+
+    @GetMapping("/user")
+    public String user(Model model) {
+        List<SiteUser> list = this.userService.getList();
+        model.addAttribute("list", list);
+        return "admin/user";
     }
 
     @GetMapping("/mail")
