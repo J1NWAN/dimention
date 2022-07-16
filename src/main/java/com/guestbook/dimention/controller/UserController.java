@@ -1,16 +1,20 @@
 package com.guestbook.dimention.controller;
 
 import com.guestbook.dimention.dto.SiteUserDTO;
+import com.guestbook.dimention.entity.Contact;
+import com.guestbook.dimention.entity.SiteUser;
 import com.guestbook.dimention.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -86,5 +90,13 @@ public class UserController {
         }
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/detail")
+    @ResponseBody
+    public SiteUser detailContact(Model model, Integer id) {
+        SiteUser siteUser = this.userService.getSiteUser(id);
+        model.addAttribute("siteUser", siteUser);
+        return siteUser;
     }
 }

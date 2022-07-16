@@ -54,7 +54,7 @@
                                         <td th:text="${contact.id}"></td>
                                         <td th:text="${contact.username}"></td>
 <!--                                        -->
-                                        <td><a th:href="|javascript:detailContact(${contact.id})|" th:text="${contact.title}" href="javascript:detailContact(14);"></a></td>
+                                        <td><a th:href="|javascript:detailContact(${contact.id})|" th:text="${contact.title}"></a></td>
                                         <td th:text="${#temporals.format(contact.createDate, 'yyyy-MM-dd HH:mm')}"
                                             class="text-center"></td>
                                     </tr>
@@ -208,8 +208,6 @@
                 $("#message").val(data.message);
             },
             error: function(error) {
-                alert(path);
-                alert(2);
             }
         })
     }

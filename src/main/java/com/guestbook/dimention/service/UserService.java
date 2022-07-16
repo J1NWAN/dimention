@@ -1,6 +1,8 @@
 package com.guestbook.dimention.service;
 
+import com.guestbook.dimention.DataNotFoundException;
 import com.guestbook.dimention.dto.SiteUserDTO;
+import com.guestbook.dimention.entity.Contact;
 import com.guestbook.dimention.entity.SiteUser;
 import com.guestbook.dimention.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -45,6 +48,15 @@ public class UserService {
 
     public List<SiteUser> getList() {
         return this.userRepository.findAll();
+    }
+
+    public SiteUser getSiteUser(Integer id) {
+        Optional<SiteUser> siteUser = this.userRepository.findById(id);
+        if(siteUser.isPresent()) {
+            return siteUser.get();
+        } else {
+            throw new DataNotFoundException("question not Found");
+        }
     }
 
     public boolean whoisIp() {
