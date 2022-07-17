@@ -51,14 +51,15 @@
                                         <div class="form-group">
                                             <label>아이디</label>
                                             <input type="text" class="form-control" id="userId" placeholder="ID">
-                                            <input type="hidden" name="userId" value="" />
+                                            <input type="hidden" name="userId" value=""/>
                                         </div>
                                     </div>
                                     <div class="col-md-4 pl-md-1">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">이메일</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Email address">
-                                            <input type="hidden" name="email" value="" />
+                                            <input type="email" class="form-control" id="email"
+                                                   placeholder="Email address">
+                                            <input type="hidden" name="email" value=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -66,8 +67,9 @@
                                     <div class="col-md-6 pr-md-1">
                                         <div class="form-group">
                                             <label>연락처</label>
-                                            <input type="text" class="form-control" id="phone" placeholder="Phone Number" value="">
-                                            <input type="hidden" name="phone" value="" />
+                                            <input type="text" class="form-control" id="phone"
+                                                   placeholder="Phone Number" value="">
+                                            <input type="hidden" name="phone" value=""/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 pl-md-1">
@@ -75,7 +77,7 @@
                                             <label>구분</label>
                                             <input type="text" class="form-control" id="userType" placeholder="Type"
                                                    value="">
-                                            <input type="hidden" name="userType" value="" />
+                                            <input type="hidden" name="userType" value=""/>
                                         </div>
                                     </div>
                                 </div>
@@ -83,14 +85,16 @@
                                     <div class="col-md-6 pr-md-1">
                                         <div class="form-group">
                                             <label>등록일자</label>
-                                            <input type="text" class="form-control" id="createDate" placeholder="Create Date" disabled />
+                                            <input type="text" class="form-control" id="createDate"
+                                                   placeholder="Create Date" disabled/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 pr-md-1">
                                         <div class="form-group">
                                             <label>수정일자</label>
-                                            <input type="text" class="form-control" id="updateDate" placeholder="Update Date" disabled>
-                                            <input type="hidden" name="updateDate" value="" disabled />
+                                            <input type="text" class="form-control" id="updateDate"
+                                                   placeholder="Update Date" disabled>
+                                            <input type="hidden" name="updateDate" value="" disabled/>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +146,7 @@
                                 <div class="block block-four"></div>
                                 <a href="javascript:void(0)">
                                     <img class="avatar" src="../admin/assets/img/emilyz.jpg" alt="...">
-                                    <h5 class="title">Mike Andrew</h5>
+                                    <h5 class="title" id="username"></h5>
                                 </a>
                                 <p class="description">
                                     Ceo/Co-Founder
@@ -190,7 +194,8 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="user : ${list}">
-                                        <td class="text-center"><a th:href="|javascript:detailUserInfo(${user.id})|" th:text="${user.id}" /></td>
+                                        <td class="text-center"><a th:href="|javascript:detailUserInfo(${user.id})|"
+                                                                   th:text="${user.id}"/></td>
                                         <td class="text-center" th:text="${user.username}"></td>
                                         <td class="text-center" th:text="${user.userId}"></td>
                                         <td class="text-center" th:text="${user.email}"></td>
@@ -286,18 +291,18 @@
     function detailUserInfo(id) {
         var path = "/user/detail";
         $.ajax({
-            type:"POST",
-            url: path,
-            data: {id: id},
-            success: function(data) {
+            type   : "POST",
+            url    : path,
+            data   : {id: id},
+            success: function (data) {
                 $("#id").val(data.id);
                 $("#userId").val(data.userId);
-                $("#username").val(data.username);
+                $("#username").text(data.username);
                 $("#email").val(data.email);
                 $("#phone").val(data.phone);
                 $("#userType").val(data.userType);
             },
-            error: function(error) {
+            error  : function (error) {
             }
         })
     }
